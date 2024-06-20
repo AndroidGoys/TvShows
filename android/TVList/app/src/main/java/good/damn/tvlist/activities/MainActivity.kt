@@ -2,6 +2,7 @@ package good.damn.tvlist.activities
 
 import android.animation.Animator
 import android.animation.ValueAnimator
+import android.app.Application
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -14,9 +15,13 @@ import good.damn.tvlist.App
 import good.damn.tvlist.animators.FragmentAnimator
 import good.damn.tvlist.extensions.generateId
 import good.damn.tvlist.fragments.StackFragment
+import good.damn.tvlist.fragments.animation.FragmentAnimation
 import good.damn.tvlist.fragments.ui.SplashFragment
 import good.damn.tvlist.fragments.ui.TVListFragment
 import good.damn.tvlist.navigators.MainFragmentNavigator
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.util.LinkedList
 
 class MainActivity
@@ -58,15 +63,21 @@ class MainActivity
             val splash = SplashFragment()
             pushFragment(
                 splash,
-                true
+                FragmentAnimation { factor, fragment ->
+                    fragment.view?.alpha = factor
+                }
             )
 
             Handler(Looper.getMainLooper()).postDelayed(
                 {
                     replaceFragment(
-                        splash,
                         TVListFragment(),
-                        true
+                        baseAnimation = FragmentAnimation { f, fragment ->
+                            fragment.view?.y = App.HEIGHT * f
+                        },
+                        onAnimation = FragmentAnimation { f, fragment ->
+                            fragment.view?.y = App.HEIGHT * (f-1.0f)
+                        }
                     )
                 },
                 3500
@@ -81,58 +92,63 @@ class MainActivity
 
     fun pushFragment(
         fragment: StackFragment,
-        withAnimation: Boolean = false
+        withAnimation: FragmentAnimation? = null
     ) {
         mNavigator.pushFragment(
             fragment
         )
 
-        if (withAnimation) {
-            mAnimator.startTransition(
-                inFragment = fragment
-            )
+        if (withAnimation == null) {
+            return
         }
+
+        mAnimator.startTransition(
+            inAnimation = withAnimation,
+            inFragment = fragment
+        )
     }
 
     fun popFragment(
-        withAnimation: Boolean = false
+        withAnimation: FragmentAnimation? = null
     ) {
-        if (withAnimation) {
-            mAnimator.onAnimationEnd = {
-                mNavigator.popFragment()
-            }
-            mAnimator.startTransition(
-                outFragment = mNavigator.topFragment
-            )
+        if (withAnimation == null) {
+            mNavigator.popFragment()
             return
         }
-        mNavigator.popFragment()
+        mAnimator.onAnimationEnd = {
+            mNavigator.popFragment()
+        }
+        mAnimator.startTransition(
+            outAnimation = withAnimation,
+            outFragment = mNavigator.topFragment
+        )
     }
 
     fun replaceFragment(
-        base: StackFragment,
         on: StackFragment,
-        withAnimation: Boolean = false
+        baseAnimation: FragmentAnimation? = null,
+        onAnimation: FragmentAnimation? = null
     ) {
-        if (withAnimation) {
+        if (baseAnimation == null || onAnimation == null) {
+            popFragment()
             pushFragment(
                 on
             )
-            mAnimator.onAnimationEnd = {
-                mNavigator.removeFragment(
-                    mNavigator.size - 2
-                )
-            }
-            mAnimator.startTransition(
-                on,
-                base
-            )
             return
         }
-
-        popFragment()
-
+        val topFragment = mNavigator.topFragment
         pushFragment(
+            on
+        )
+        mAnimator.onAnimationEnd = {
+            mNavigator.removeFragment(
+                mNavigator.size - 2
+            )
+        }
+        mAnimator.startTransition(
+            baseAnimation,
+            topFragment,
+            onAnimation,
             on
         )
     }

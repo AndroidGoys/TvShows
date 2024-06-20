@@ -2,9 +2,11 @@ package good.damn.tvlist
 
 import android.app.Application
 import android.content.res.Resources
+import android.os.Looper
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.core.content.res.ResourcesCompat
+import java.util.logging.Handler
 
 class App
 : Application() {
@@ -16,6 +18,17 @@ class App
 
         var WIDTH = 1
         var HEIGHT = 1
+
+
+        private val HANDLER = android.os.Handler(
+            Looper.getMainLooper()
+        )
+
+        fun ui(
+            runnable: Runnable
+        ) {
+            HANDLER.post(runnable)
+        }
 
         @ColorInt
         fun color(

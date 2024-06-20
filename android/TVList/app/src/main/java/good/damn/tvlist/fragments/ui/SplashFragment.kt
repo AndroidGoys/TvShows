@@ -5,6 +5,8 @@ import android.view.View
 import android.widget.LinearLayout
 import good.damn.tvlist.App
 import good.damn.tvlist.fragments.StackFragment
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 
 class SplashFragment
 : StackFragment() {
@@ -16,26 +18,12 @@ class SplashFragment
         val layout = LinearLayout(
             context
         )
-        layout.y = App.HEIGHT.toFloat()
 
         layout.setBackgroundColor(
             0xff0000ff.toInt()
         )
 
         return layout
-    }
-
-
-    override fun onInAnimation(
-        v: Float
-    ) {
-        view?.y = App.HEIGHT * (1.0f-v)
-    }
-
-    override fun onOutAnimation(
-        v: Float
-    ) {
-        view?.alpha = 1.0f - v
     }
 
 }

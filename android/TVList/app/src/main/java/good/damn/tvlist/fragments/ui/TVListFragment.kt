@@ -6,6 +6,7 @@ import android.os.Looper
 import android.view.View
 import android.widget.LinearLayout
 import good.damn.tvlist.fragments.StackFragment
+import good.damn.tvlist.fragments.animation.FragmentAnimation
 
 class TVListFragment
 : StackFragment() {
@@ -18,7 +19,6 @@ class TVListFragment
             context
         )
 
-        layout.alpha = 0.0f
         layout.setBackgroundColor(
             0xffff0000.toInt()
         )
@@ -26,23 +26,15 @@ class TVListFragment
         layout.setOnClickListener {
             pushFragment(
                 TVDetailsFragment(),
-                withAnimation = true
+                withAnimation = FragmentAnimation {
+                    f, fragment ->
+
+                    fragment.view?.scaleX = f
+
+                }
             )
         }
 
         return layout
     }
-
-    override fun onInAnimation(
-        v: Float
-    ) {
-        view?.alpha = v
-    }
-
-    override fun onOutAnimation(
-        v: Float
-    ) {
-        view?.alpha = v
-    }
-
 }

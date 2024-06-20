@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.animation.ValueAnimator
 import androidx.fragment.app.Fragment
 import good.damn.tvlist.fragments.StackFragment
+import good.damn.tvlist.fragments.animation.FragmentAnimation
 
 class FragmentAnimator
 : ValueAnimator(),
@@ -12,7 +13,10 @@ Animator.AnimatorListener {
 
     var onAnimationEnd: (()->Unit)? = null
 
+    private var mInAnimation: FragmentAnimation? = null
     private var mInFragment: StackFragment? = null
+
+    private var mOutAnimation: FragmentAnimation? = null
     private var mOutFragment: StackFragment? = null
 
     init {
@@ -29,11 +33,18 @@ Animator.AnimatorListener {
     }
 
     fun startTransition(
+        inAnimation: FragmentAnimation? = null,
         inFragment: StackFragment? = null,
+        outAnimation: FragmentAnimation? = null,
         outFragment: StackFragment? = null
     ) {
+
         mInFragment = inFragment
         mOutFragment = outFragment
+
+        mInAnimation = inAnimation
+        mOutAnimation = outAnimation
+
         start()
     }
 
@@ -41,12 +52,18 @@ Animator.AnimatorListener {
         animation: ValueAnimator
     ) {
         val v = animation.animatedValue as Float
-        mInFragment?.onInAnimation(
-            v
-        )
-        mOutFragment?.onOutAnimation(
-            v
-        )
+
+        mInFragment?.let {
+            mInAnimation
+                ?.onFrameUpdate
+                ?.invoke(v, it)
+        }
+
+        mOutFragment?.let {
+            mOutAnimation
+                ?.onFrameUpdate
+                ?.invoke(v,it)
+        }
     }
 
     override fun onAnimationCancel(

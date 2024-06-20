@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import good.damn.tvlist.App
 import good.damn.tvlist.activities.MainActivity
+import good.damn.tvlist.fragments.animation.FragmentAnimation
 
 abstract class StackFragment
 : Fragment() {
@@ -30,7 +31,7 @@ abstract class StackFragment
 
     fun pushFragment(
         fragment: StackFragment,
-        withAnimation: Boolean = false
+        withAnimation: FragmentAnimation? = null
     ) {
         mainActivity().pushFragment(
             fragment,
@@ -40,17 +41,18 @@ abstract class StackFragment
 
     fun replaceFragment(
         fragment: StackFragment,
-        withAnimation: Boolean = false
+        outAnimation: FragmentAnimation? = null,
+        inAnimation: FragmentAnimation? = null
     ) {
         mainActivity().replaceFragment(
-            this,
             fragment,
-            withAnimation
+            outAnimation,
+            inAnimation
         )
     }
 
     fun popFragment(
-        withAnimation: Boolean = false
+        withAnimation: FragmentAnimation? = null
     ) {
         mainActivity().popFragment(
             withAnimation
@@ -61,14 +63,6 @@ abstract class StackFragment
         context: Context,
         measureUnit: Int
     ): View
-
-    abstract fun onInAnimation(
-        v: Float
-    )
-
-    abstract fun onOutAnimation(
-        v: Float
-    )
 }
 
 private fun StackFragment.mainActivity(): MainActivity {
