@@ -16,11 +16,29 @@ class TVDetailsFragment
             context
         )
 
+        layout.scaleX = 0f
+
         layout.setBackgroundColor(
             0xff00ff00.toInt()
         )
 
         return layout
+    }
+
+    override fun onInAnimation(
+        v: Float
+    ) {
+        view?.apply {
+            scaleX = v
+        }
+    }
+
+    override fun onOutAnimation(
+        v: Float
+    ) {
+        view?.apply {
+            scaleX = v
+        }
     }
 
 }

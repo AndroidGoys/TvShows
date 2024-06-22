@@ -60,6 +60,13 @@ abstract class StackFragment
         measureUnit: Int
     ): View
 
+    abstract fun onInAnimation(
+        v: Float
+    )
+
+    abstract fun onOutAnimation(
+        v: Float
+    )
 }
 
 private fun StackFragment.mainActivity(): MainActivity {
