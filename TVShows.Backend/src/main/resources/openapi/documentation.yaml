@@ -1,23 +1,55 @@
 openapi: "3.0.3"
 info:
-  title: "Application API"
-  description: "Application API"
+  title: "TvHistoryApi"
+  description: "Управление каналами и списком телепередачь"
   version: "1.0.0"
 servers:
   - url: "http://0.0.0.0:8080"
+
 paths:
-  /:
+  /api/channels:
     get:
-      description: "Hello World!"
+      description: "Получить список каналов"
+      parameters:
+        - name: "limit"
+          required: false
+          in: "query"
+
+        - name: "offset"
+          required: false
+          in: "query"
+
+        - name: "playlist-limit"
+          required: false
+          in: "query"
       responses:
         "200":
           description: "OK"
           content:
-            text/plain:
+            text/json:
               schema:
-                type: "string"
-              examples:
-                Example#1:
-                  value: "Hello World!"
+                type: "object"
+                properties:
+                  id:
+                    type: integer
+                    example: 123
+                  name:
+                    type: string
+                    example: "Первый канал"
+                  image:
+                    type: string
+                    example: "https:..."
+                  playlist:
+                    type: array
+                    example: [
+                        {
+                          id: 123,
+                          name: "Они сражались за Родину",
+                          timestart: 1719059700,
+                          timestop: 1719068400
+                        }
+                      ]
+
+
 components:
   schemas: { }
