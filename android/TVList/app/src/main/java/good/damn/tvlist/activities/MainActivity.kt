@@ -11,6 +11,7 @@ import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import good.damn.tvlist.App
+import good.damn.tvlist.animators.FragmentAnimator
 import good.damn.tvlist.extensions.generateId
 import good.damn.tvlist.fragments.StackFragment
 import good.damn.tvlist.fragments.ui.SplashFragment
@@ -19,13 +20,12 @@ import good.damn.tvlist.navigators.MainFragmentNavigator
 import java.util.LinkedList
 
 class MainActivity
-: AppCompatActivity(),
-ValueAnimator.AnimatorUpdateListener {
+: AppCompatActivity() {
 
     private lateinit var mNavigator: MainFragmentNavigator<StackFragment>
     private lateinit var mContainer: FrameLayout
 
-    private val mAnimator = ValueAnimator()
+    private val mAnimator = FragmentAnimator()
 
     override fun onCreate(
         savedInstanceState: Bundle?
@@ -33,9 +33,6 @@ ValueAnimator.AnimatorUpdateListener {
         super.onCreate(savedInstanceState)
         val context = this
 
-        mAnimator.addUpdateListener(
-            this
-        )
         mAnimator.duration = 350
         mAnimator.interpolator = AccelerateDecelerateInterpolator()
         mAnimator.setFloatValues(
@@ -53,7 +50,6 @@ ValueAnimator.AnimatorUpdateListener {
 
 
 
-
         mContainer.generateId()
         mContainer.post {
             App.WIDTH = mContainer.width
@@ -61,7 +57,8 @@ ValueAnimator.AnimatorUpdateListener {
 
             val splash = SplashFragment()
             pushFragment(
-                splash
+                splash,
+                true
             )
 
             Handler(Looper.getMainLooper()).postDelayed(
@@ -89,21 +86,27 @@ ValueAnimator.AnimatorUpdateListener {
         mNavigator.pushFragment(
             fragment
         )
-        mAnimator.start()
+
+        if (withAnimation) {
+            mAnimator.startTransition(
+                inFragment = fragment
+            )
+        }
     }
 
     fun popFragment(
-        fragment: StackFragment,
         withAnimation: Boolean = false
     ) {
-        mNavigator.popFragment(
-            fragment
-        )
-        mAnimator.removeAllUpdateListeners()
-        mAnimator.addUpdateListener(
-            this::onUpdateAnimationPop
-        )
-        mAnimator.start()
+        if (withAnimation) {
+            mAnimator.onAnimationEnd = {
+                mNavigator.popFragment()
+            }
+            mAnimator.startTransition(
+                outFragment = mNavigator.topFragment
+            )
+            return
+        }
+        mNavigator.popFragment()
     }
 
     fun replaceFragment(
@@ -111,38 +114,28 @@ ValueAnimator.AnimatorUpdateListener {
         on: StackFragment,
         withAnimation: Boolean = false
     ) {
-        mNavigator.pushFragment(
-            on
-        )
-        mAnimator.removeAllListeners()
-        mAnimator.addListener(object : Animator.AnimatorListener {
-            override fun onAnimationCancel(animation: Animator) = Unit
-            override fun onAnimationRepeat(animation: Animator) = Unit
-            override fun onAnimationStart(animation: Animator) = Unit
-            override fun onAnimationEnd(
-                animation: Animator
-            ) {
-                mNavigator.popFragment(
-                    base
+        if (withAnimation) {
+            pushFragment(
+                on
+            )
+            mAnimator.onAnimationEnd = {
+                mNavigator.removeFragment(
+                    mNavigator.size - 2
                 )
             }
-        })
-        mAnimator.start()
+            mAnimator.startTransition(
+                on,
+                base
+            )
+            return
+        }
+
+        popFragment()
+
+        pushFragment(
+            on
+        )
     }
 
-    override fun onAnimationUpdate(
-        animation: ValueAnimator
-    ) {
-        val v = animation.animatedValue as Float
-        mNavigator
-            .topFragment
-            ?.onInAnimation(v)
-    }
-
-    private fun onUpdateAnimationPop(
-        animator: ValueAnimator
-    ) {
-
-    }
 
 }

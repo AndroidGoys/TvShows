@@ -35,7 +35,7 @@ class SplashFragment
     override fun onOutAnimation(
         v: Float
     ) {
-        view?.alpha = v
+        view?.alpha = 1.0f - v
     }
 
 }

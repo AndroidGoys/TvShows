@@ -11,11 +11,13 @@ class MainFragmentNavigator<FRAGMENT: Fragment>(
     private val mContainer: FrameLayout
 ) {
 
+    var size: Int = 0
+        get() = mFragments.size
+
     var topFragment: FRAGMENT? = null
         get() = mFragments.last
 
     private val mFragments = LinkedList<FRAGMENT>()
-
 
     fun pushFragment(
         fragment: FRAGMENT
@@ -31,10 +33,25 @@ class MainFragmentNavigator<FRAGMENT: Fragment>(
             ).commit()
     }
 
-    fun popFragment(
+    fun removeFragment(
+        index: Int
+    ) {
+        removeFrag(
+            mFragments.removeAt(
+                index
+            )
+        )
+    }
+
+    fun popFragment() {
+        removeFrag(
+            mFragments.removeLast()
+        )
+    }
+
+    private fun removeFrag(
         fragment: FRAGMENT
     ) {
-        mFragments.removeLast()
         mFragmentManager
             .beginTransaction()
             .remove(

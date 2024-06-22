@@ -33,7 +33,8 @@ abstract class StackFragment
         withAnimation: Boolean = false
     ) {
         mainActivity().pushFragment(
-            fragment
+            fragment,
+            withAnimation
         )
     }
 
@@ -43,7 +44,8 @@ abstract class StackFragment
     ) {
         mainActivity().replaceFragment(
             this,
-            fragment
+            fragment,
+            withAnimation
         )
     }
 
@@ -51,7 +53,7 @@ abstract class StackFragment
         withAnimation: Boolean = false
     ) {
         mainActivity().popFragment(
-            this
+            withAnimation
         )
     }
 
