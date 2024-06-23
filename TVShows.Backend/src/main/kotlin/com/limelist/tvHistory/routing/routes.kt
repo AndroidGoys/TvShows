@@ -7,7 +7,9 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import kotlinx.serialization.Serializable
 
-fun Route.useTvHistory(rootRoute: String) {
+import com.limelist.tvHistory.TvHistoryServices
+
+fun Route.useTvHistory(rootRoute: String, services: TvHistoryServices) {
     route(rootRoute) {
         get("/") {
             call.respondText("Hello World!")
@@ -18,7 +20,6 @@ fun Route.useTvHistory(rootRoute: String) {
         }
     }
 }
-
 
 @Serializable
 @Resource("/articles")
