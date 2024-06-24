@@ -11,6 +11,9 @@ import com.limelist.tvHistory.TvHistoryServices
 
 fun Route.useTvHistory(rootRoute: String, services: TvHistoryServices) {
     route(rootRoute) {
+        channels(services.tvChannelsService)
+        shows(services.tvShowsService)
+
         get("/") {
             call.respondText("Hello World!")
         }

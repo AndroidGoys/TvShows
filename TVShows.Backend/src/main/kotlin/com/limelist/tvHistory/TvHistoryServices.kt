@@ -1,8 +1,9 @@
 package com.limelist.tvHistory
 
-import com.limelist.tvHistory.services.TvService
-import io.ktor.server.application.*
+import com.limelist.tvHistory.services.TvChannelsService
+import com.limelist.tvHistory.services.TvShowsService
 
-data class TvHistoryServices (
-    val TvService: TvService
+data class TvHistoryServices(
+    val tvChannelsService: TvChannelsService,
+    val tvShowsService: TvShowsService
 )

@@ -1,20 +1,36 @@
 package com.limelist.tvHistory.dataAccess.sqlite.repositories
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import java.sql.Connection
 
 abstract class BaseSqliteRepository(
-    protected val connection: Connection
+    protected val connection: Connection,
+    protected val mutex: Mutex,
+    protected val tableName: String
 ) {
-
-    init {
+    init{
         initialize(connection)
     }
 
+//    suspend fun count(): Int {
+//        mutex.withLock {
+//            val statement = connection.createStatement();
+//            statement.execute("""
+//               SELECT COUNT(*) FROM $tableName;
+//            """)
+//        }
+//    }
+
+
     companion object {
+        val channelsTabelName = "channels"
+        val showsTabelName = "shows"
+
         fun initialize(connection: Connection) {
             val statement = connection.createStatement();
 
             statement.execute("""
-                CREATE TABLE IF NOT EXISTS channels (
+                CREATE TABLE IF NOT EXISTS $channelsTabelName (
                     id SERIAL PRIMARY KEY,
                     name VARCHAR(50) NOT NULL,
                     description TEXT NOT NULL
@@ -22,7 +38,7 @@ abstract class BaseSqliteRepository(
             """)
 
             statement.execute("""
-                CREATE TABLE IF NOT EXISTS shows (
+                CREATE TABLE IF NOT EXISTS $showsTabelName (
                     id SERIAL PRIMARY KEY,
                     name VARCHAR(50) NOT NULL,
                     description TEXT NOT NULL,  
@@ -34,7 +50,7 @@ abstract class BaseSqliteRepository(
                 CREATE TABLE IF NOT EXISTS show_reviews (
                     id SERIAL PRIMARY KEY,
                     show_id INTEGER REFERENCES tv_shows,
-                    date REAL,  
+                    date INTEGER,  
                     comment TEXT,
                     assessment INTEGER
                 );
@@ -44,7 +60,7 @@ abstract class BaseSqliteRepository(
                 CREATE TABLE IF NOT EXISTS channel_reviews (
                     id SERIAL PRIMARY KEY,
                     channel_id INTEGER REFERENCES shows,
-                    date REAL,  
+                    date INTEGER,  
                     comment TEXT,
                     assessment INTEGER
                 );
@@ -68,8 +84,6 @@ abstract class BaseSqliteRepository(
                     url TEXT NOT NULL
                 );
             """)
-
-
             statement.close()
         }
     }
