@@ -6,6 +6,9 @@ import android.widget.FrameLayout
 import androidx.annotation.ColorRes
 import good.damn.tvlist.App
 
+fun View.bottomMargin() = frameParams()
+    .bottomMargin
+
 fun View.generateId() {
     id = View.generateViewId()
 }
@@ -41,3 +44,7 @@ fun View.boundsFrame(
         layoutParams = it
     }
 }
+
+private fun View.frameParams() = (
+    layoutParams as FrameLayout.LayoutParams
+)

@@ -5,6 +5,11 @@
         <item name="colorAccent">@color/accentColor</item>
         <item name="colorPrimary">@color/accentColor</item>
         <item name="colorSecondary">@color/accentColor</item>
+
+
+        <!--No Splash screen on higher android versions-->
+        <item name="android:windowIsTranslucent">true</item>
+
     </style>
 
 </resources>

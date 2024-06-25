@@ -8,6 +8,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import good.damn.tvlist.App
 import good.damn.tvlist.R
+import good.damn.tvlist.extensions.bottomMargin
 import good.damn.tvlist.extensions.boundsFrame
 import good.damn.tvlist.extensions.setBackgroundColorId
 import good.damn.tvlist.extensions.setTextSizePx
@@ -18,6 +19,8 @@ import kotlinx.coroutines.Dispatchers
 
 class SplashFragment
 : StackFragment() {
+
+    var onAnimationEnd: (()->Unit)? = null
 
     override fun onCreateView(
         context: Context,
@@ -92,6 +95,12 @@ class SplashFragment
         textViewAppName.setTextSizePx(
             measureUnit * 0.1111f
         )
+        textViewCompany.setTextSizePx(
+            measureUnit * 0.0966f
+        )
+        textViewPowered.setTextSizePx(
+            measureUnit * 0.02898f
+        )
 
 
 
@@ -101,11 +110,25 @@ class SplashFragment
         textViewAppName.boundsFrame(
             Gravity.CENTER
         )
+        textViewPowered.boundsFrame(
+            Gravity.CENTER_HORIZONTAL or Gravity.BOTTOM,
+            bottom = measureUnit * 0.13043f
+        )
+        textViewCompany.boundsFrame(
+            Gravity.CENTER_HORIZONTAL or Gravity.BOTTOM,
+            bottom = textViewPowered.bottomMargin() + textViewPowered.textSize
+        )
 
 
         layout.apply {
             addView(
                 textViewAppName
+            )
+            addView(
+                textViewCompany
+            )
+            addView(
+                textViewPowered
             )
         }
 

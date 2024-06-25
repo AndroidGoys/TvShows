@@ -71,26 +71,24 @@ class MainActivity
             App.HEIGHT = mContainer.height
 
             val splash = SplashFragment()
+
+            splash.onAnimationEnd = {
+                replaceFragment(
+                    TVListFragment(),
+                    baseAnimation = FragmentAnimation { f, fragment ->
+                        fragment.view?.y = App.HEIGHT * f
+                    },
+                    onAnimation = FragmentAnimation { f, fragment ->
+                        fragment.view?.y = App.HEIGHT * (f-1.0f)
+                    }
+                )
+            }
+
             pushFragment(
                 splash,
                 FragmentAnimation { factor, fragment ->
                     fragment.view?.alpha = factor
                 }
-            )
-
-            Handler(Looper.getMainLooper()).postDelayed(
-                {
-                    replaceFragment(
-                        TVListFragment(),
-                        baseAnimation = FragmentAnimation { f, fragment ->
-                            fragment.view?.y = App.HEIGHT * f
-                        },
-                        onAnimation = FragmentAnimation { f, fragment ->
-                            fragment.view?.y = App.HEIGHT * (f-1.0f)
-                        }
-                    )
-                },
-                3500
             )
 
         }
