@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.ColorInt
 import androidx.fragment.app.Fragment
 import good.damn.tvlist.App
 import good.damn.tvlist.activities.MainActivity
@@ -12,6 +13,20 @@ import good.damn.tvlist.fragments.animation.FragmentAnimation
 
 abstract class StackFragment
 : Fragment() {
+
+    @ColorInt
+    var navigationBarColor: Int = 0
+        set(v) {
+            field = v
+            mainActivity().navigationBarColor = v
+        }
+
+    @ColorInt
+    var statusBarColor: Int = 0
+        set(v) {
+            field = v
+            mainActivity().statusBarColor = v
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater,

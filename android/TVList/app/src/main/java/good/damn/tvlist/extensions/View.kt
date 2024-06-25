@@ -1,6 +1,8 @@
 package good.damn.tvlist.extensions
 
+import android.view.Gravity
 import android.view.View
+import android.widget.FrameLayout
 import androidx.annotation.ColorRes
 import good.damn.tvlist.App
 
@@ -16,4 +18,26 @@ fun View.setBackgroundColorId(
             id
         )
     )
+}
+
+fun View.boundsFrame(
+    gravity: Int = Gravity.START,
+    width: Int = -2,
+    height: Int = -2,
+    left: Float = 0f,
+    right: Float = 0f,
+    top: Float = 0f,
+    bottom: Float = 0f
+) {
+    FrameLayout.LayoutParams(
+        width,
+        height
+    ).let {
+        it.gravity = gravity
+        it.leftMargin = left.toInt()
+        it.rightMargin = right.toInt()
+        it.topMargin = top.toInt()
+        it.bottomMargin = bottom.toInt()
+        layoutParams = it
+    }
 }

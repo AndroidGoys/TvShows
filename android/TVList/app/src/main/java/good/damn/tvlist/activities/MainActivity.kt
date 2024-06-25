@@ -1,31 +1,41 @@
 package good.damn.tvlist.activities
 
-import android.animation.Animator
-import android.animation.ValueAnimator
-import android.app.Application
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.WindowInsets
 import android.view.animation.AccelerateDecelerateInterpolator
-import android.view.animation.OvershootInterpolator
 import android.widget.FrameLayout
+import androidx.annotation.ColorInt
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import good.damn.tvlist.App
+import good.damn.tvlist.R
 import good.damn.tvlist.animators.FragmentAnimator
 import good.damn.tvlist.extensions.generateId
 import good.damn.tvlist.fragments.StackFragment
 import good.damn.tvlist.fragments.animation.FragmentAnimation
-import good.damn.tvlist.fragments.ui.SplashFragment
+import good.damn.tvlist.fragments.ui.splash.SplashFragment
 import good.damn.tvlist.fragments.ui.TVListFragment
 import good.damn.tvlist.navigators.MainFragmentNavigator
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import java.util.LinkedList
 
 class MainActivity
 : AppCompatActivity() {
+
+    @ColorInt
+    var navigationBarColor: Int = 0
+        set(v) {
+            window.navigationBarColor = v
+            field = v
+        }
+
+    @ColorInt
+    var statusBarColor: Int = 0
+        set(v) {
+            window.statusBarColor = v
+            field = v
+        }
 
     private lateinit var mNavigator: MainFragmentNavigator<StackFragment>
     private lateinit var mContainer: FrameLayout
@@ -90,6 +100,28 @@ class MainActivity
         )
     }
 
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+
+        WindowInsetsControllerCompat(
+            window,
+            window.decorView
+        ).apply {
+
+
+            hide(
+                WindowInsetsCompat.Type.statusBars() or (
+                    WindowInsetsCompat.Type.navigationBars()
+                )
+            )
+
+            systemBarsBehavior = WindowInsetsControllerCompat
+                .BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+
+        }
+
+    }
+
     fun pushFragment(
         fragment: StackFragment,
         withAnimation: FragmentAnimation? = null
@@ -152,6 +184,5 @@ class MainActivity
             on
         )
     }
-
 
 }
