@@ -26,5 +26,6 @@ fun Application.configureTvHistoryServices(): TvHistoryServices {
 
     val tvChannelsService = TvChannelsService(channels);
     val tvShowsService = TvShowsService(shows);
+
     return TvHistoryServices(tvChannelsService, tvShowsService)
 }
