@@ -161,7 +161,7 @@ class SplashFragment
         )
 
         circleView.interpolator = AccelerateDecelerateInterpolator()
-        circleView.duration = 1250
+        circleView.duration = 1550
 
         circleView.onAnimationFrameUpdate = {
             circleView.circleRadius = length * it
@@ -175,6 +175,7 @@ class SplashFragment
                 onFrameUpdate = { factor, view ->
                     view.alpha = factor
                 }
+                onAnimationEnd = this@SplashFragment.onAnimationEnd
                 interpolator = AccelerateDecelerateInterpolator()
                 duration = 1250
                 start()

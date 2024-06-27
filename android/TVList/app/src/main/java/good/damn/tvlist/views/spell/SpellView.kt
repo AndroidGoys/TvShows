@@ -57,7 +57,7 @@ class SpellView(
     private val mPaint = Paint()
 
     init {
-        mAnimator.duration = 3050
+        mAnimator.duration = 1350
         mAnimator.interpolator = AccelerateDecelerateInterpolator()
 
         mAnimator.addUpdateListener(
@@ -68,7 +68,9 @@ class SpellView(
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
         super.onLayout(changed, left, top, right, bottom)
 
-        var x = 0f
+        var x = (width - mPaint.measureText(
+            text
+        )) * 0.5f
 
         mSpellRenders?.forEach {
             val spellWidth = mPaint.measureText(
