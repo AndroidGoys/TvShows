@@ -18,6 +18,7 @@ import good.damn.tvlist.extensions.withAlpha
 import good.damn.tvlist.fragments.StackFragment
 import good.damn.tvlist.views.CircleView
 import good.damn.tvlist.views.GroupViewAnimation
+import good.damn.tvlist.views.spell.SpellView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlin.math.sqrt
@@ -42,7 +43,7 @@ class SplashFragment
         val circleView = CircleView(
             context
         )
-        val textViewAppName = TextView(
+        val textViewAppName = SpellView(
             context
         )
         val textViewCompany = TextView(
@@ -66,10 +67,10 @@ class SplashFragment
 
 
         // Text
-        textViewAppName.isAllCaps = true
-        textViewAppName.setText(
+        textViewAppName.text = context.getString(
             R.string.app_name
-        )
+        ).uppercase()
+
         textViewCompany.setText(
             R.string.limeX
         )
@@ -94,9 +95,7 @@ class SplashFragment
         App.color(
             R.color.accentColor
         ).let {
-            textViewAppName.setTextColor(
-                it
-            )
+            textViewAppName.textColor = it
             textViewCompany.setTextColor(
                 it
             )
@@ -107,9 +106,7 @@ class SplashFragment
 
 
         // Text Size
-        textViewAppName.setTextSizePx(
-            measureUnit * 0.1111f
-        )
+        textViewAppName.textSize = measureUnit * 0.1111f
         textViewCompany.setTextSizePx(
             measureUnit * 0.0966f
         )
@@ -123,7 +120,9 @@ class SplashFragment
 
         // Bounds
         textViewAppName.boundsFrame(
-            Gravity.CENTER
+            Gravity.CENTER,
+            width = measureUnit,
+            height = textViewAppName.textSize.toInt()
         )
         textViewPowered.boundsFrame(
             Gravity.CENTER_HORIZONTAL or
@@ -181,7 +180,8 @@ class SplashFragment
                 start()
             }
         }
-        
+
+        textViewAppName.startAnimation()
         circleView.startAnimation()
 
         return layout
