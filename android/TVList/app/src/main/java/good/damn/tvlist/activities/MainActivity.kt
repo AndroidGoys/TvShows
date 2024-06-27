@@ -110,7 +110,12 @@ class MainActivity
             hide(
                 WindowInsetsCompat.Type.statusBars() or (
                     WindowInsetsCompat.Type.navigationBars()
+                ) or (
+                    WindowInsetsCompat.Type.systemBars()
                 )
+            )
+            show(
+                WindowInsetsCompat.Type.displayCutout()
             )
 
             systemBarsBehavior = WindowInsetsControllerCompat

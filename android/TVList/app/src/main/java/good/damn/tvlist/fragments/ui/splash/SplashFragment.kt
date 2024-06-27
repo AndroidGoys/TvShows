@@ -1,6 +1,8 @@
 package good.damn.tvlist.fragments.ui.splash
 
 import android.content.Context
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.Gravity
 import android.view.View
@@ -175,7 +177,12 @@ class SplashFragment
                 onFrameUpdate = { factor, view ->
                     view.alpha = factor
                 }
-                onAnimationEnd = this@SplashFragment.onAnimationEnd
+                onAnimationEnd = {
+                    Handler(Looper.getMainLooper()).postDelayed(
+                        {this@SplashFragment.onAnimationEnd?.invoke()},
+                        1000
+                    )
+                }
                 interpolator = AccelerateDecelerateInterpolator()
                 duration = 1250
                 start()
