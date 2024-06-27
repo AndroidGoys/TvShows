@@ -7,5 +7,4 @@ import kotlinx.serialization.Serializable
 class TvShowModel (
     val id: Int,
     val name: String,
-    val channels: Iterable<TvChannelModel>
 )

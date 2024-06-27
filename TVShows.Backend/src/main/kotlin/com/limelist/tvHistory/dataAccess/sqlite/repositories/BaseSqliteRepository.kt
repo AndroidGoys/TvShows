@@ -1,4 +1,5 @@
 package com.limelist.tvHistory.dataAccess.sqlite.repositories
+import com.limelist.tvHistory.domain.repositories.Repository
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import java.sql.Connection
@@ -7,19 +8,19 @@ abstract class BaseSqliteRepository(
     protected val connection: Connection,
     protected val mutex: Mutex,
     protected val tableName: String
-) {
+): Repository {
     init{
         initialize(connection)
     }
 
-//    suspend fun count(): Int {
-//        mutex.withLock {
-//            val statement = connection.createStatement();
-//            statement.execute("""
-//               SELECT COUNT(*) FROM $tableName;
-//            """)
-//        }
-//    }
+    override suspend fun count(): Int = mutex.withLock {
+        val statement = connection.createStatement();
+        return statement.executeQuery("""
+           SELECT COUNT(*) FROM $tableName;
+        """).use { resultSet ->
+            resultSet.getInt(0)
+       }
+    }
 
 
     companion object {

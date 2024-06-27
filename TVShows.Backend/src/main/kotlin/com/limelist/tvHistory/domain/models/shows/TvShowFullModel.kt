@@ -9,5 +9,5 @@ class TvShowFullModel (
     val id: Int,
     val name: String,
     val description: String,
-    val channels: Iterable<TvChannelModel>
+    val previewUrl: String,
 )
