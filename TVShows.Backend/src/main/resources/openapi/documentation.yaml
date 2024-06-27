@@ -49,7 +49,5 @@ paths:
                           timestop: 1719068400
                         }
                       ]
-
-
 components:
   schemas: { }
