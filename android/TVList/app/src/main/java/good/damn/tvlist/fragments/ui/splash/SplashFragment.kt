@@ -1,6 +1,7 @@
 package good.damn.tvlist.fragments.ui.splash
 
 import android.content.Context
+import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
@@ -15,21 +16,30 @@ import good.damn.tvlist.extensions.setBackgroundColorId
 import good.damn.tvlist.extensions.setTextSizePx
 import good.damn.tvlist.extensions.withAlpha
 import good.damn.tvlist.fragments.StackFragment
+import good.damn.tvlist.views.CircleView
 import good.damn.tvlist.views.GroupViewAnimation
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlin.math.sqrt
 
 class SplashFragment
 : StackFragment() {
 
     var onAnimationEnd: (()->Unit)? = null
 
+    companion object {
+        private const val TAG = "SplashFragment"
+    }
+    
     override fun onCreateView(
         context: Context,
         measureUnit: Int
     ): View {
 
         val layout = FrameLayout(
+            context
+        )
+        val circleView = CircleView(
             context
         )
         val textViewAppName = TextView(
@@ -42,6 +52,8 @@ class SplashFragment
             context
         )
 
+        textViewCompany.alpha = 0f
+        textViewPowered.alpha = 0f
 
         App.font(
             R.font.open_sans_extra_bold,
@@ -65,7 +77,9 @@ class SplashFragment
             R.string.powered
         )
 
-
+        circleView.circleColor = App.color(
+            R.color.lime
+        )
 
         App.color(
             R.color.background
@@ -126,6 +140,9 @@ class SplashFragment
 
         layout.apply {
             addView(
+                circleView
+            )
+            addView(
                 textViewAppName
             )
             addView(
@@ -136,16 +153,36 @@ class SplashFragment
             )
         }
 
-        GroupViewAnimation().apply {
-            addView(textViewCompany)
-            addView(textViewPowered)
-            onFrameUpdate = { factor, view ->
-                view.alpha = factor
-            }
-            interpolator = AccelerateDecelerateInterpolator()
-            duration = 1250
-            start()
+
+        val halfWidth = App.WIDTH * 0.53f
+        val halfHeight = App.HEIGHT * 0.53f
+
+        val length = sqrt(
+            halfWidth * halfWidth + halfHeight * halfHeight
+        )
+
+        circleView.interpolator = AccelerateDecelerateInterpolator()
+        circleView.duration = 1250
+
+        circleView.onAnimationFrameUpdate = {
+            circleView.circleRadius = length * it
+            circleView.invalidate()
         }
+
+        circleView.onAnimationEnd = {
+            GroupViewAnimation().apply {
+                addView(textViewCompany)
+                addView(textViewPowered)
+                onFrameUpdate = { factor, view ->
+                    view.alpha = factor
+                }
+                interpolator = AccelerateDecelerateInterpolator()
+                duration = 1250
+                start()
+            }
+        }
+        
+        circleView.startAnimation()
 
         return layout
     }
