@@ -3,6 +3,7 @@ package good.damn.tvlist.fragments.ui.splash
 import android.content.Context
 import android.view.Gravity
 import android.view.View
+import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -14,6 +15,7 @@ import good.damn.tvlist.extensions.setBackgroundColorId
 import good.damn.tvlist.extensions.setTextSizePx
 import good.damn.tvlist.extensions.withAlpha
 import good.damn.tvlist.fragments.StackFragment
+import good.damn.tvlist.views.GroupViewAnimation
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 
@@ -39,7 +41,6 @@ class SplashFragment
         val textViewPowered = TextView(
             context
         )
-
 
 
         App.font(
@@ -111,12 +112,15 @@ class SplashFragment
             Gravity.CENTER
         )
         textViewPowered.boundsFrame(
-            Gravity.CENTER_HORIZONTAL or Gravity.BOTTOM,
+            Gravity.CENTER_HORIZONTAL or
+                Gravity.BOTTOM,
             bottom = measureUnit * 0.13043f
         )
         textViewCompany.boundsFrame(
-            Gravity.CENTER_HORIZONTAL or Gravity.BOTTOM,
-            bottom = textViewPowered.bottomMargin() + textViewPowered.textSize
+            Gravity.CENTER_HORIZONTAL or
+                Gravity.BOTTOM,
+            bottom = textViewPowered.bottomMargin()
+                + textViewPowered.textSize
         )
 
 
@@ -130,6 +134,17 @@ class SplashFragment
             addView(
                 textViewPowered
             )
+        }
+
+        GroupViewAnimation().apply {
+            addView(textViewCompany)
+            addView(textViewPowered)
+            onFrameUpdate = { factor, view ->
+                view.alpha = factor
+            }
+            interpolator = AccelerateDecelerateInterpolator()
+            duration = 1250
+            start()
         }
 
         return layout

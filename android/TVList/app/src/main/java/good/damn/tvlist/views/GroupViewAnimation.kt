@@ -50,6 +50,10 @@ Animator.AnimatorListener {
         view: View
     ) = mList.add(view)
 
+    fun start() {
+        mAnimator.start()
+    }
+
     override fun onAnimationUpdate(
         animation: ValueAnimator
     ) {
