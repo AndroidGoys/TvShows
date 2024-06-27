@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="90bedc6f-460c-4d4c-878d-1225d998cf6f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/domain/models/TvShowDates.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/domain/models/TvShowDates.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/openapi/documentation.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/openapi/documentation.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -108,7 +107,7 @@
       <workItem from="1719159095580" duration="1284000" />
       <workItem from="1719225318757" duration="15266000" />
       <workItem from="1719410380765" duration="5556000" />
-      <workItem from="1719495816551" duration="6389000" />
+      <workItem from="1719495816551" duration="7049000" />
     </task>
     <servers />
   </component>
