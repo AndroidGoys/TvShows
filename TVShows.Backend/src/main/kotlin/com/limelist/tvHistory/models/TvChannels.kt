@@ -1,8 +1,8 @@
-package com.limelist.tvHistory.domain.models
+package com.limelist.tvHistory.models
 
 import kotlinx.serialization.Serializable
 
-import com.limelist.tvHistory.domain.models.channels.TvChannelModel
+import com.limelist.tvHistory.models.channels.TvChannelModel
 
 @Serializable
 data class TvChannels (

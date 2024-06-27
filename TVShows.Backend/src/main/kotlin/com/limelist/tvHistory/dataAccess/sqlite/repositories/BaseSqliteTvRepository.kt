@@ -1,14 +1,14 @@
 package com.limelist.tvHistory.dataAccess.sqlite.repositories
-import com.limelist.tvHistory.domain.repositories.Repository
+import com.limelist.tvHistory.dataAccess.interfaces.TvRepository
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import java.sql.Connection
 
-abstract class BaseSqliteRepository(
+abstract class BaseSqliteTvRepository(
     protected val connection: Connection,
     protected val mutex: Mutex,
     protected val tableName: String
-): Repository {
+): TvRepository {
     init{
         initialize(connection)
     }

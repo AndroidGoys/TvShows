@@ -1,6 +1,6 @@
-package com.limelist.tvHistory.domain.models
+package com.limelist.tvHistory.models
 
-import com.limelist.tvHistory.domain.models.shows.TvShowModel
+import com.limelist.tvHistory.models.shows.TvShowModel
 import kotlinx.serialization.Serializable
 
 @Serializable

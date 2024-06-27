@@ -1,4 +1,4 @@
-package com.limelist.tvHistory.domain.models
+package com.limelist.tvHistory.models
 
 import kotlinx.serialization.Serializable
 

@@ -1,17 +1,17 @@
 package com.limelist.tvHistory.dataAccess.sqlite.repositories
 
-import com.limelist.tvHistory.domain.models.channels.TvChannelFullModel
-import com.limelist.tvHistory.domain.models.channels.TvChannelModel
+import com.limelist.tvHistory.models.channels.TvChannelFullModel
+import com.limelist.tvHistory.models.channels.TvChannelModel
 import kotlinx.coroutines.sync.Mutex
 import java.sql.Connection
 
-import com.limelist.tvHistory.domain.repositories.TvChannelsRepository
+import com.limelist.tvHistory.dataAccess.interfaces.TvChannelsRepository
 import kotlinx.coroutines.sync.withLock
 
-class TvChannelsSqliteRepository(
+class SqliteTvChannelsRepository(
     connection: Connection,
     mutex: Mutex
-) : BaseSqliteRepository(connection, mutex, channelsTabelName),
+) : BaseSqliteTvRepository(connection, mutex, channelsTabelName),
     TvChannelsRepository {
 
         override suspend fun getAllChannels(limit: Int?, offset: Int, playlistLimit: Int?): Iterable<TvChannelModel> {

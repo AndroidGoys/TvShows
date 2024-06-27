@@ -1,9 +1,8 @@
 package com.limelist.tvHistory.services
 
-import com.limelist.tvHistory.domain.models.TvChannels
-import com.limelist.tvHistory.domain.models.TvShows
-import com.limelist.tvHistory.domain.models.channels.TvChannelFullModel
-import com.limelist.tvHistory.domain.repositories.*;
+import com.limelist.tvHistory.dataAccess.interfaces.TvChannelsRepository
+import com.limelist.tvHistory.models.TvChannels
+import com.limelist.tvHistory.models.channels.TvChannelFullModel
 
 class TvChannelsService (
     private val tvChannels: TvChannelsRepository
