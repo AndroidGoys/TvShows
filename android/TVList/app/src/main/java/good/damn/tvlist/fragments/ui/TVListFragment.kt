@@ -25,10 +25,15 @@ class TVListFragment
         val viewPager = ViewPager2(
             context
         )
+        val layoutBar = FrameLayout(
+            context
+        )
 
         layout.setBackgroundColorId(
             R.color.background
         )
+
+
 
         layout.apply {
             addView(viewPager)
