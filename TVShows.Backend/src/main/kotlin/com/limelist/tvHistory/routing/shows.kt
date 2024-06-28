@@ -1,6 +1,7 @@
 package com.limelist.tvHistory.routing
 
 import com.limelist.tvHistory.services.TvShowsService
+import io.ktor.http.*
 import io.ktor.resources.*
 import io.ktor.server.application.*
 import io.ktor.server.resources.*
@@ -13,17 +14,22 @@ fun Route.shows(tvShowsService: TvShowsService) {
         get<AllShows>(){ args ->
             val shows = tvShowsService.getAllShows(
                 args.limit,
-                args.offset,
-                args.playlistLimit
+                args.timeStart,
             )
             call.respond(shows);
         }
         get<AllShows.Show>(){ args ->
-            val show = tvShowsService.getShowDetails(args.id);
-            if (show != null)
-                call.respond(show)
-            else
-                call.respondText("{}")
+            val show = tvShowsService.getShowDetails(args.id)
+
+            if (show != null) {
+                call.respond(
+                    HttpStatusCode.Found,
+                    show
+                )
+                return@get
+            }
+
+            call.respond(HttpStatusCode.NotFound);
         }
 
     }
@@ -34,8 +40,7 @@ fun Route.shows(tvShowsService: TvShowsService) {
 @Resource("/")
 data class AllShows(
     val limit: Int? = null,
-    val offset: Int? = null,
-    val playlistLimit: Int? = null
+    val timeStart: Long? = null
 ){
     @Resource("{id}")
     data class Show(

@@ -5,22 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90bedc6f-460c-4d4c-878d-1225d998cf6f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/limelist/plugins/Services.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/limelist/plugins/Services.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/dataAccess/sqlite/repositories/BaseSqliteRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/dataAccess/sqlite/repositories/BaseSqliteTvRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/dataAccess/sqlite/repositories/TvChannelsSqliteRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/dataAccess/sqlite/repositories/SqliteTvChannelsRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/dataAccess/interfaces/TvChannelsRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/dataAccess/interfaces/TvChannelsRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/dataAccess/interfaces/ТvShowsRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/dataAccess/interfaces/ТvShowsRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/dataAccess/sqlite/repositories/SqliteTvChannelsRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/dataAccess/sqlite/repositories/SqliteTvChannelsRepository.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/dataAccess/sqlite/repositories/TvShowsSqliteRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/dataAccess/sqlite/repositories/TvShowsSqliteRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/domain/models/TvChannels.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/models/TvChannels.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/domain/models/TvShowDates.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/models/TvShowDates.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/domain/models/TvShows.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/models/TvShows.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/domain/models/channels/TvChannelFullModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/models/channels/TvChannelFullModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/domain/models/channels/TvChannelModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/models/channels/TvChannelModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/domain/models/channels/TvChannelShowModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/models/channels/TvChannelShowModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/domain/models/shows/TvShowChannelModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/models/shows/TvShowChannelModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/domain/models/shows/TvShowFullModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/models/shows/TvShowFullModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/domain/models/shows/TvShowModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/models/shows/TvShowModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/domain/repositories/Repository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/dataAccess/interfaces/TvRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/domain/repositories/TvChannelsRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/dataAccess/interfaces/TvChannelsRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/domain/repositories/ТvShowsRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/dataAccess/interfaces/ТvShowsRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/models/TvChannels.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/models/TvShowDates.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/models/TvTimeSpan.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/models/TvShows.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/models/channels/TvChannelFullModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/models/channels/TvChannelDetailsModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/models/channels/TvChannelModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/models/channels/TvChannelPreviewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/models/channels/TvChannelShowModel.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/models/shows/TvShowChannelModel.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/models/shows/TvShowFullModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/models/shows/TvShowDetailsModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/models/shows/TvShowModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/models/shows/TvShowPreviewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/routing/channels.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/routing/channels.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/routing/shows.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/routing/shows.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/services/TvChannelsService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/services/TvChannelsService.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/services/TvShowsService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/limelist/tvHistory/services/TvShowsService.kt" afterDir="false" />
     </list>
@@ -34,6 +34,7 @@
       <list>
         <option value="Class" />
         <option value="Kotlin File" />
+        <option value="Kotlin Enum" />
         <option value="Kotlin Class" />
       </list>
     </option>
@@ -53,39 +54,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Kotlin.ApplicationKt.executor": "Run",
-    "Kotlin.Unnamed.executor": "Debug",
-    "Ktor.ApplicationKt.executor": "Run",
-    "Ktor.Unnamed.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "ktor",
-    "kotlin-language-version-configured": "true",
-    "last_directory_selection": "C:/Junk/Solutions/Pet/TvShows/TVShows.Backend/src/main/kotlin/com/limelist",
-    "last_opened_file_path": "C:/Junk/Solutions/Pet/TvShows/TVShows.Backend",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Kotlin.ApplicationKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.Unnamed.executor&quot;: &quot;Debug&quot;,
+    &quot;Ktor.ApplicationKt.executor&quot;: &quot;Run&quot;,
+    &quot;Ktor.Unnamed.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;ktor&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Junk/Solutions/Pet/TvShows/TVShows.Backend/src/main/kotlin/com/limelist&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Junk/Solutions/Pet/TvShows/TVShows.Backend&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlite"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlite&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Junk\Solutions\Pet\TvShows\TVShows.Backend\src\main\kotlin\com\limelist\tvHistory\routing" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.limelist.tvHistory.models" />
+      <recent name="com.limelist.tvHistory.models.shows" />
+      <recent name="com.limelist.tvHistory.models.channels" />
+      <recent name="com.limelist.tvHistory.dataAccess.interfaces" />
       <recent name="com.limelist.tvHistory.domain.models" />
-      <recent name="com.limelist.tvHistory.domain.models.channels" />
-      <recent name="com.limelist.tvHistory.domain.models.shows" />
-      <recent name="com.limelist.tvHistory.dataAccess.simpleList" />
     </key>
   </component>
   <component name="RunManager">
@@ -123,7 +125,9 @@
       <workItem from="1719159095580" duration="1284000" />
       <workItem from="1719225318757" duration="15266000" />
       <workItem from="1719410380765" duration="5556000" />
-      <workItem from="1719495816551" duration="7438000" />
+      <workItem from="1719495816551" duration="10539000" />
+      <workItem from="1719560005057" duration="5786000" />
+      <workItem from="1719569266687" duration="1365000" />
     </task>
     <servers />
   </component>

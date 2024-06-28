@@ -1,27 +1,39 @@
 package com.limelist.tvHistory.services
 
 import com.limelist.tvHistory.models.TvShows
-import com.limelist.tvHistory.models.shows.TvShowFullModel
+import com.limelist.tvHistory.models.shows.TvShowDetailsModel
 import com.limelist.tvHistory.dataAccess.interfaces.ТvShowsRepository
+import com.limelist.tvHistory.models.TvChannels
+import com.limelist.tvHistory.models.shows.TvShowChannelModel
+import com.limelist.tvHistory.models.shows.TvShowPreviewModel
 
 class TvShowsService(
     private val tvShows: ТvShowsRepository
 ) {
-    suspend fun getAllShows(limit: Int?, offset: Int?, playlistLimit:Int?): TvShows {
-        val offset = offset ?: 0;
-        val shows = tvShows.getAllShows(limit, offset, playlistLimit)
+    suspend fun getAllShows(
+        limit: Int?,
+        timeStart: Long?
+    ): TvShows<TvShowPreviewModel> {
+        val timeStart = timeStart ?: 0
+        val limit = limit ?: 0
+
+        val shows = tvShows.getAllShows(limit, timeStart)
         val totalCount = tvShows.count();
 
-        val leftAmount = Math.max(totalCount - shows.count() - offset , 0)
-
         return TvShows(
-            leftAmount,
             shows
         )
     }
 
-    suspend fun getShowDetails(id: Int): TvShowFullModel? {
-        return tvShows.getShowDetails(id);
+    suspend fun getShowDetails(
+        showId: Int
+    ): TvShowDetailsModel? {
+        return tvShows.getShowDetails(showId);
     }
 
+    suspend fun getShowChannels(
+        showId: Int
+    ) : TvChannels<TvShowChannelModel> {
+        return tvShows.getShowChannels(showId)
+    }
 }

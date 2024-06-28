@@ -1,10 +1,9 @@
 package com.limelist.tvHistory.models
 
-import com.limelist.tvHistory.models.shows.TvShowModel
+import com.limelist.tvHistory.models.shows.TvShow
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class TvShows (
-    val leftAmount: Int,
-    val shows: Iterable<TvShowModel>,
-)
+open class TvShows<T>(
+    val shows: Iterable<TvShow>
+) where T : TvShow
