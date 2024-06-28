@@ -1,4 +1,10 @@
+
+[submodule "TvShowsBackend"]
+	path = TvShowsBackend
+	url = https://github.com/AndroidGoys/TvShowsBackend
+  branch = main
+  
 [submodule "android/TvShowsAndroid"]
 	path = android/TvShowsAndroid
-	url = https://github.com/AndroidGoys/TvShowsAndroid
+	url = https://github.com/AndroidGoys/TvShowsAndroid  
 	branch = main
