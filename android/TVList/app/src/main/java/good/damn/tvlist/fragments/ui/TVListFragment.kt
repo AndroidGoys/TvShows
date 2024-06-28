@@ -6,6 +6,7 @@ import android.os.Looper
 import android.view.View
 import android.widget.LinearLayout
 import good.damn.tvlist.fragments.StackFragment
+import good.damn.tvlist.fragments.animation.FragmentAnimation
 
 class TVListFragment
 : StackFragment() {
@@ -25,11 +26,15 @@ class TVListFragment
         layout.setOnClickListener {
             pushFragment(
                 TVDetailsFragment(),
-                withAnimation = true
+                withAnimation = FragmentAnimation {
+                    f, fragment ->
+
+                    fragment.view?.scaleX = f
+
+                }
             )
         }
 
         return layout
     }
-
 }

@@ -5,12 +5,28 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.ColorInt
 import androidx.fragment.app.Fragment
 import good.damn.tvlist.App
 import good.damn.tvlist.activities.MainActivity
+import good.damn.tvlist.fragments.animation.FragmentAnimation
 
 abstract class StackFragment
 : Fragment() {
+
+    @ColorInt
+    var navigationBarColor: Int = 0
+        set(v) {
+            field = v
+            mainActivity().navigationBarColor = v
+        }
+
+    @ColorInt
+    var statusBarColor: Int = 0
+        set(v) {
+            field = v
+            mainActivity().statusBarColor = v
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,28 +46,31 @@ abstract class StackFragment
 
     fun pushFragment(
         fragment: StackFragment,
-        withAnimation: Boolean = false
+        withAnimation: FragmentAnimation? = null
     ) {
         mainActivity().pushFragment(
-            fragment
+            fragment,
+            withAnimation
         )
     }
 
     fun replaceFragment(
         fragment: StackFragment,
-        withAnimation: Boolean = false
+        outAnimation: FragmentAnimation? = null,
+        inAnimation: FragmentAnimation? = null
     ) {
         mainActivity().replaceFragment(
-            this,
-            fragment
+            fragment,
+            outAnimation,
+            inAnimation
         )
     }
 
     fun popFragment(
-        withAnimation: Boolean = false
+        withAnimation: FragmentAnimation? = null
     ) {
         mainActivity().popFragment(
-            this
+            withAnimation
         )
     }
 
@@ -59,7 +78,6 @@ abstract class StackFragment
         context: Context,
         measureUnit: Int
     ): View
-
 }
 
 private fun StackFragment.mainActivity(): MainActivity {

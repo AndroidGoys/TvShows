@@ -1,10 +1,15 @@
 package good.damn.tvlist
 
 import android.app.Application
+import android.content.Context
 import android.content.res.Resources
+import android.graphics.Typeface
+import android.os.Looper
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
+import androidx.annotation.FontRes
 import androidx.core.content.res.ResourcesCompat
+import android.os.Handler
 
 class App
 : Application() {
@@ -17,16 +22,33 @@ class App
         var WIDTH = 1
         var HEIGHT = 1
 
+
+        private val HANDLER = Handler(
+            Looper.getMainLooper()
+        )
+
+        fun ui(
+            runnable: Runnable
+        ) {
+            HANDLER.post(runnable)
+        }
+
+        fun font(
+            @FontRes id: Int,
+            context: Context
+        ) = ResourcesCompat.getFont(
+            context,
+            id
+        )
+
         @ColorInt
         fun color(
             @ColorRes id: Int
-        ): Int {
-            return ResourcesCompat.getColor(
-                RESOURCES,
-                id,
-                null
-            )
-        }
+        ) = ResourcesCompat.getColor(
+            RESOURCES,
+            id,
+            null
+        )
 
     }
 
