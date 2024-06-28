@@ -114,9 +114,6 @@ class MainActivity
                     WindowInsetsCompat.Type.systemBars()
                 )
             )
-            show(
-                WindowInsetsCompat.Type.displayCutout()
-            )
 
             systemBarsBehavior = WindowInsetsControllerCompat
                 .BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE

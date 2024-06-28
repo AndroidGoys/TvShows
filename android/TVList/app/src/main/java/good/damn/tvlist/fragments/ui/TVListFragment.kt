@@ -4,7 +4,11 @@ import android.content.Context
 import android.os.Handler
 import android.os.Looper
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.LinearLayout
+import androidx.viewpager2.widget.ViewPager2
+import good.damn.tvlist.R
+import good.damn.tvlist.extensions.setBackgroundColorId
 import good.damn.tvlist.fragments.StackFragment
 import good.damn.tvlist.fragments.animation.FragmentAnimation
 
@@ -15,25 +19,21 @@ class TVListFragment
         context: Context,
         measureUnit: Int
     ): View {
-        val layout = LinearLayout(
+        val layout = FrameLayout(
+            context
+        )
+        val viewPager = ViewPager2(
             context
         )
 
-        layout.setBackgroundColor(
-            0xffff0000.toInt()
+        layout.setBackgroundColorId(
+            R.color.background
         )
 
-        layout.setOnClickListener {
-            pushFragment(
-                TVDetailsFragment(),
-                withAnimation = FragmentAnimation {
-                    f, fragment ->
-
-                    fragment.view?.scaleX = f
-
-                }
-            )
+        layout.apply {
+            addView(viewPager)
         }
+
 
         return layout
     }

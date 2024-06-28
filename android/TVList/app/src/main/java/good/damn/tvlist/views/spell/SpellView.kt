@@ -100,7 +100,7 @@ class SpellView(
     ) {
         (animation.animatedValue as Float).let { factor ->
             mSpellRenders?.forEach {
-                it.currentX = it.startX + (width + it.startX) * (1.0f - factor)
+                it.currentX = it.startX + (width + it.startX * 5.0f) * (1.0f - factor)
             }
         }
         invalidate()
